@@ -1,0 +1,47 @@
+{
+ "title": "Teste de voz (um personagem)",
+ "limit": 20,
+ "characters": [
+  {
+   "name": "Teste",
+   "role": "Mesmo texto, voz variável",
+   "pitch": 1
+  }
+ ],
+ "blocks": [
+  {
+   "title": "Trecho de teste (abertura)",
+   "optional": false,
+   "lines": [
+    {
+     "who": "Teste",
+     "text": "Bom dia, e sejam bem-vindos ao Papo de Dados, o podcast que conversa sobre dados, tecnologia e carreira sem complicar! Eu sou Lucas Marques, estudante de Ciência de Dados da Fatec Baixada Santista."
+    },
+    {
+     "who": "Teste",
+     "text": "E eu sou Timóteo Pereira, da mesma turma. Nosso episódio é “Economia da inferência: quem paga a conta da IA”."
+    },
+    {
+     "who": "Teste",
+     "text": "Uma palavra que todo mundo usa sem pensar: nuvem. Ela parece leve, mas é um prédio cheio de servidores, ligado na tomada e refrigerado com ar ou com água."
+    },
+    {
+     "who": "Teste",
+     "text": "E aí entra o termo-chave. Treinar um modelo de IA é como construir uma fábrica: custa muito, mas acontece poucas vezes. Já a inferência é cada resposta que o modelo dá a uma pergunta nossa. Cada uma custa pouco, mas elas somam bilhões."
+    },
+    {
+     "who": "Teste",
+     "text": "Segundo a Agência Internacional de Energia, no relatório Energy and AI, de abril de 2025, os data centers consumiram cerca de 415 terawatts-hora em 2024, perto de 1,5% da eletricidade do planeta. A projeção é chegar a 945 em 2030. Terawatt-hora é a unidade que mede países inteiros."
+    },
+    {
+     "who": "Teste",
+     "text": "As projeções continuam sendo revistas. Em junho de 2026, a Gartner estimou 565 terawatts-hora para este ano, alta de 26% sobre 2025. Mas atenção: são projeções, e não certezas."
+    },
+    {
+     "who": "Teste",
+     "text": "Então, quem paga a energia, a água, os chips e o dinheiro de cada resposta? E, numa disciplina de linguagens, quanto isso depende do idioma em que a gente pergunta? Vamos conhecer os quatro convidados!"
+    }
+   ]
+  }
+ ]
+}

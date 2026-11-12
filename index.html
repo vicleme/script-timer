@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cronômetro de roteiro</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232f6fed'/%3E%3Crect x='26' y='9' width='12' height='6' rx='2' fill='%23fff'/%3E%3Cpath d='M32 15v4' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='38' r='18' fill='none' stroke='%23fff' stroke-width='4.5'/%3E%3Cpath d='M24.5 34v8M32 29v18M39.5 34v8' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#2f6fed">
+<style>
+.brand{display:flex;align-items:center;gap:10px;margin:0 0 12px}.brand svg{width:40px;height:40px;flex:none}.brand b{font-size:18px;line-height:1.1}.brand span{display:block;font-size:12px;color:var(--mut);font-weight:400}
+:root{--bg:#f6f5f1;--fg:#1d1d1b;--mut:#6b6a64;--card:#fff;--bd:#dcdad2;--ac:#2f6fed}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17171a;--fg:#ecebe6;--mut:#9a988f;--card:#222226;--bd:#37373d;--ac:#6b9bff}}
+:root[data-theme="dark"]{--bg:#17171a;--fg:#ecebe6;--mut:#9a988f;--card:#222226;--bd:#37373d;--ac:#6b9bff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1000px;margin:0 auto;padding:16px}
+button,select,input,textarea{font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:7px 10px}
+button{cursor:pointer}button.p{background:var(--ac);border-color:var(--ac);color:#fff}
+textarea{width:100%;font-size:14px}input[type=checkbox]{width:auto}input[type=range]{padding:0;width:90px}
+.top{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}#ti{font-size:20px;font-weight:700;flex:1;min-width:200px}
+details{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 14px;margin:12px 0}summary{cursor:pointer;font-weight:600}
+.row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:6px 0}.row input[data-k=name]{width:150px}.row input[data-k=role]{flex:1;min-width:120px}
+.mut{color:var(--mut);font-size:14px}.ctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
+.clock{display:flex;gap:18px;flex-wrap:wrap;align-items:baseline;margin:12px 0}.big{font-size:40px;font-weight:700;font-variant-numeric:tabular-nums}
+.bar{height:8px;background:var(--bd);border-radius:4px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--ac)}
+.stage{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:8px;margin:16px 0}
+.ch{background:var(--card);border:2px solid var(--bd);border-radius:12px;padding:8px 4px;text-align:center;transition:.15s}.ch.on{border-color:var(--ac);transform:translateY(-4px)}
+.ch svg{width:100%;max-width:84px;height:auto}.ch b{display:block;font-size:13px}.ch span{font-size:11px;color:var(--mut)}
+.mouth{transform-origin:50px 66px;transform:scaleY(.25)}.on .mouth{animation:talk .22s infinite alternate}@keyframes talk{to{transform:scaleY(1.2)}}
+.sub{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;min-height:100px}.sub b{color:var(--ac)}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}td,th{text-align:left;padding:6px 8px;border-bottom:1px solid var(--bd)}th{color:var(--mut);font-weight:500}
+.w{overflow-x:auto}h2{font-size:16px;margin:18px 0 6px}
+</style></head><body><main>
+<div class="brand" aria-label="Cronômetro de roteiro"><svg viewBox="0 0 64 64" role="img" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#2f6fed"/><rect x="26" y="9" width="12" height="6" rx="2" fill="#fff"/><path d="M32 15v4" stroke="#fff" stroke-width="4" stroke-linecap="round"/><circle cx="32" cy="38" r="18" fill="none" stroke="#fff" stroke-width="4.5"/><path d="M24.5 34v8M32 29v18M39.5 34v8" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg><b>Cronômetro de roteiro<span>Meça o tempo real de fala do seu roteiro</span></b></div>
+<div class="top"><input id="ti" placeholder="Título do roteiro"><span><button id="imp">Importar JSON</button> <button id="exp">Exportar JSON</button> <button id="th">Claro/Escuro</button></span><input type="file" id="fi" accept=".json" hidden></div>
+<details id="ed" open><summary>1. Montar o roteiro (texto, personagens e blocos)</summary>
+<p class="mut">Cole o texto. Uma linha por fala no formato <b>Nome: fala</b>. Uma linha começando com <b>##</b> abre um bloco; acrescente <b>[opcional]</b> ao título para blocos que só entram se sobrar tempo. Linhas sem "Nome:" continuam a fala anterior. Os personagens são criados sozinhos, quantos aparecerem.</p>
+<textarea id="tx" rows="9" placeholder="## Abertura&#10;Ana: Olá, pessoal!&#10;Beto: Obrigado pelo convite.&#10;&#10;## Extra [opcional]&#10;Ana: Se sobrar tempo..."></textarea>
+<div class="ctl"><button class="p" id="gen">Gerar do texto</button><span class="mut">Substitui os blocos; os personagens já cadastrados são mantidos.</span></div>
+<h2>Personagens</h2><div id="chs"></div><button id="addc">+ personagem</button> <button id="fixv" title="Grava a voz que cada personagem está usando agora, para repetir o teste com as mesmas vozes">Fixar vozes atuais</button></details>
+<div class="clock"><div><div class="big" id="tot">0:00</div><div class="mut">tempo de fala medido</div></div><div><div class="big" id="pct" style="font-size:24px">0/0</div><div class="mut">falas</div></div>
+<div><label class="mut">Limite (min) <input id="lim" type="number" min="0" step="0.5" style="width:80px"></label><div class="mut" id="lm"></div></div></div>
+<div class="bar"><i id="bar"></i></div><div class="stage" id="stage"></div>
+<div class="sub" id="sub"><span class="mut">Aperte “Iniciar” para a leitura em voz sintética. O tempo só conta enquanto a voz fala, mais a pausa entre falas.</span></div>
+<div class="ctl"><button class="p" id="go">▶ Iniciar</button><button id="pa">⏸ Pausar</button><button id="st">■ Parar</button><button id="sk">⏭ Pular fala</button><button id="cp">Copiar resultado</button></div>
+<div class="ctl"><label>Trecho <select id="sec" style="max-width:240px"></select></label><label><input type="checkbox" id="op"> incluir blocos opcionais</label>
+<label>Voz <select id="vl"><option value="pt-BR" selected>Brasil (pt-BR)</option><option value="pt-PT">Portugal (pt-PT)</option><option value="pt">Todas em português</option></select></label>
+<label>Velocidade <select id="rt"><option value=".9">0,9x</option><option value="1" selected>1,0x</option><option value="1.1">1,1x</option><option value="1.2">1,2x</option></select></label>
+<label>Pausa entre falas <select id="gap"><option value="0">0 s</option><option value=".3" selected>0,3 s</option><option value=".6">0,6 s</option></select></label></div>
+<div class="mut" id="vinfo"></div>
+<h2>Tempo por personagem</h2><div class="w"><table id="t1"></table></div><h2>Tempo por bloco</h2><div class="w"><table id="t2"></table></div>
+<p class="mut">Voz sintética é mais regular que fala humana: some uma margem de 5% a 10%. A medição vale para a velocidade e a pausa escolhidas. O projeto fica salvo neste navegador; use Exportar JSON para guardar ou compartilhar.</p>
+</main><script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const COL=["#e8a33d","#4aa3df","#e0777d","#5fbf8a","#a98be0","#d9b94a","#4fc3c3","#c97b4a","#8aa1b8","#d86fb0"],HAIR=["#3b2a1a","#222","#5a3a22","#111","#6b4a2a","#2a1f14","#8a5a2b"],PIT=[1,1.15,.85,.95,1.2,.75];
+let P={title:"Exemplo",limit:1,characters:[{name:"Ana",role:"Apresentadora",pitch:1.1},{name:"Beto",role:"Convidado",pitch:.85}],blocks:[{title:"Abertura",optional:false,lines:[{who:"Ana",text:"Olá, pessoal! Bem-vindos ao nosso programa."},{who:"Beto",text:"Obrigado pelo convite, é um prazer estar aqui."}]},{title:"Extra",optional:true,lines:[{who:"Ana",text:"E se sobrar tempo, falamos mais um pouco."}]}]};
+try{const s=localStorage.getItem("cronoroteiro");if(s)P=JSON.parse(s)}catch(e){}
+const save=()=>{try{localStorage.setItem("cronoroteiro",JSON.stringify(P))}catch(e){}};
+const fmt=s=>{s=Math.round(s);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")};
+const words=t=>t.split(/\s+/).filter(Boolean).length;
+const ci=n=>P.characters.findIndex(c=>c.name.toLowerCase()==String(n).toLowerCase());
+function parse(t){const bl=[];let b=null,l=null;for(const raw of t.split(/\r?\n/)){const s=raw.trim();if(!s)continue;
+let m=s.match(/^#{1,3}\s*(.+)$/);if(m){let ti=m[1].trim();const o=/\[opcional\]|\(opcional\)/i.test(ti);ti=ti.replace(/\s*(\[opcional\]|\(opcional\))/i,"");b={title:ti,optional:o,lines:[]};bl.push(b);l=null;continue}
+m=s.match(/^([^:#]{1,40}):\s*(.+)$/);if(m&&!/^https?$/i.test(m[1])){if(!b){b={title:"Roteiro",optional:false,lines:[]};bl.push(b)}l={who:m[1].trim(),text:m[2].trim()};b.lines.push(l)}else if(l)l.text+=" "+s}return bl}
+const toText=()=>P.blocks.map(b=>"## "+b.title+(b.optional?" [opcional]":"")+"\n"+b.lines.map(l=>l.who+": "+l.text).join("\n")).join("\n\n");
+function av(i){const c=COL[i%COL.length],h=HAIR[i%HAIR.length],g=i%3==1;return `<svg viewBox="0 0 100 110"><rect x="12" y="78" width="76" height="32" rx="16" fill="${c}"/><circle cx="50" cy="45" r="30" fill="#f1c9a0"/><path d="M20 40a30 30 0 0 1 60 0q-30-14-60 0z" fill="${h}"/>${g?'<g fill="none" stroke="#222" stroke-width="2"><circle cx="39" cy="46" r="7"/><circle cx="61" cy="46" r="7"/><path d="M46 46h8"/></g>':""}<circle cx="39" cy="46" r="2.5" fill="#222"/><circle cx="61" cy="46" r="2.5" fill="#222"/><ellipse class="mouth" cx="50" cy="66" rx="9" ry="6" fill="#7a2a2a"/></svg>`}
+const stage=()=>{$("stage").innerHTML=P.characters.map((p,i)=>`<div class="ch" id="c${i}">${av(i)}<b>${esc(p.name)}</b><span>${esc(p.role||"")}</span></div>`).join("")};
+const ptVoices=()=>"speechSynthesis" in window?speechSynthesis.getVoices().filter(v=>/^pt/i.test(v.lang)):[];
+const chars=()=>{$("chs").innerHTML=P.characters.map((c,i)=>`<div class="row"><input data-i="${i}" data-k="name" value="${esc(c.name)}" placeholder="Nome"><input data-i="${i}" data-k="role" value="${esc(c.role||"")}" placeholder="Papel (opcional)"><label class="mut">tom <input type="range" min=".6" max="1.5" step=".05" data-i="${i}" data-k="pitch" value="${c.pitch||1}"></label><select data-i="${i}" data-k="voice" title="Voz deste personagem"><option value="">Voz automática</option>${ptVoices().map(v=>`<option value="${esc(v.name)}"${c.voice==v.name?" selected":""}>${esc(v.name)} (${esc(v.lang)})</option>`).join("")}</select><button data-del="${i}" title="Remover">✕</button></div>`).join("")};
+const secs=()=>{const v=$("sec").value;$("sec").innerHTML='<option value="">Roteiro inteiro</option>'+P.blocks.map((b,i)=>`<option value="${i}">${esc(b.title)}${b.optional?" (opcional)":""}</option>`).join("");$("sec").value=v&&P.blocks[+v]?v:""};
+let list=[],idx=0,run=false,paused=false,tp=[],ts={},done=0,t0=0,voices=[],timer=null,cur=null;
+const total=()=>tp.reduce((a,b)=>a+b,0);
+function prep(){const sv=$("sec").value;const bs=sv!==""?[P.blocks[+sv]]:P.blocks.filter(b=>$("op").checked||!b.optional);list=[];bs.forEach(b=>b&&b.lines.forEach(l=>{const p=ci(l.who);if(p>=0)list.push({p,t:l.text,b:b.title})}));idx=0;done=0;tp=P.characters.map(()=>0);ts={};list.forEach(x=>ts[x.b]=0);draw()}
+function draw(){const T=total(),L=(+$("lim").value||0)*60;$("tot").textContent=fmt(T);$("pct").textContent=done+"/"+list.length;$("bar").style.width=(list.length?done/list.length*100:0)+"%";
+$("lm").textContent=L?(T>L?"excedeu "+fmt(T-L):"folga "+fmt(L-T))+" · limite "+fmt(L):"";
+$("t1").innerHTML="<tr><th>Personagem</th><th>Tempo</th><th>Palavras</th></tr>"+P.characters.map((c,i)=>{const w=list.filter(x=>x.p==i).reduce((a,x)=>a+words(x.t),0);return w||tp[i]?`<tr><td>${esc(c.name)}${c.role?" · "+esc(c.role):""}</td><td>${fmt(tp[i])}</td><td>${w}</td></tr>`:""}).join("");
+$("t2").innerHTML="<tr><th>Bloco</th><th>Tempo</th></tr>"+Object.keys(ts).map(k=>`<tr><td>${esc(k)}</td><td>${fmt(ts[k])}</td></tr>`).join("")}
+function all(){chars();stage();secs();prep();save()}
+function load(){const w=$("vl").value,al=speechSynthesis.getVoices().filter(v=>/^pt/i.test(v.lang));let f=w=="pt"?al:al.filter(v=>v.lang.replace("_","-").toLowerCase()==w.toLowerCase());let aviso="";if(!f.length&&al.length){f=al;aviso=" Não há voz "+w+" neste navegador; usando as outras em português."}voices=f;$("vinfo").textContent=voices.length?"Vozes usadas: "+voices.length+" ("+voices.map(v=>v.name+" "+v.lang).slice(0,4).join(", ")+(voices.length>4?"...":"")+")."+(voices.length<3?" Poucas vozes: os personagens se distinguem pelo tom.":"")+aviso:"Nenhuma voz em português encontrada; usando a padrão.";chars()}
+try{const sv=localStorage.getItem("cronovoz");if(sv)$("vl").value=sv}catch(e){}
+$("vl").onchange=()=>{try{localStorage.setItem("cronovoz",$("vl").value)}catch(e){}if("speechSynthesis" in window)load()};
+if("speechSynthesis" in window){load();speechSynthesis.onvoiceschanged=load}else $("vinfo").textContent="Este navegador não tem síntese de voz."
+function mark(i){P.characters.forEach((_,k)=>{const e=$("c"+k);if(e)e.classList.toggle("on",k==i)})}
+function say(){if(!run||paused)return;if(idx>=list.length){run=false;$("sub").innerHTML="<b>Fim.</b> Tempo total de fala: "+fmt(total())+".";mark(-1);return}
+const x=list[idx],p=P.characters[x.p];mark(x.p);$("sub").innerHTML=`<b>${esc(p.name)}</b> <span class="mut">(${esc(x.b)})</span><br>${esc(x.t)}`;
+const u=new SpeechSynthesisUtterance(x.t);const vv=(p.voice&&ptVoices().find(v=>v.name==p.voice))||(voices.length?voices[x.p%voices.length]:null);u.lang=vv?vv.lang:"pt-BR";u.rate=+$("rt").value;u.pitch=p.pitch||1;if(vv)u.voice=vv;
+let ended=false;const fin=()=>{if(ended||cur!==u)return;ended=true;const g=+$("gap").value,dt=(performance.now()-t0)/1000+g;tp[x.p]+=dt;ts[x.b]+=dt;done++;idx++;draw();timer=setTimeout(say,g*1000)};
+u.onend=fin;u.onerror=fin;cur=u;t0=performance.now();speechSynthesis.speak(u)}
+$("go").onclick=()=>{speechSynthesis.cancel();clearTimeout(timer);cur=null;prep();run=true;paused=false;$("pa").textContent="⏸ Pausar";say()};
+$("pa").onclick=()=>{if(!run)return;paused=!paused;if(paused){speechSynthesis.pause();$("pa").textContent="▶ Continuar"}else{speechSynthesis.resume();$("pa").textContent="⏸ Pausar"}};
+$("st").onclick=()=>{run=false;paused=false;cur=null;clearTimeout(timer);speechSynthesis.cancel();mark(-1);$("pa").textContent="⏸ Pausar"};
+$("sk").onclick=()=>{if(run&&!paused)speechSynthesis.cancel()};
+$("cp").onclick=()=>{const t=P.title+"\nTotal: "+fmt(total())+" (vel. "+$("rt").value+"x, pausa "+$("gap").value+" s)\n\nPor personagem:\n"+P.characters.map((c,i)=>c.name+": "+fmt(tp[i])+(c.voice?" ("+c.voice+")":"")).join("\n")+"\n\nPor bloco:\n"+Object.keys(ts).map(k=>k+": "+fmt(ts[k])).join("\n");try{navigator.clipboard.writeText(t)}catch(e){}$("cp").textContent="Copiado!";setTimeout(()=>$("cp").textContent="Copiar resultado",1500)};
+$("th").onclick=()=>{const r=document.documentElement,dk=getComputedStyle(r).getPropertyValue("--bg").trim()=="#17171a";r.dataset.theme=dk?"light":"dark"};
+$("op").onchange=$("sec").onchange=()=>{if(!run)prep()};
+$("ti").oninput=()=>{P.title=$("ti").value;save()};$("lim").oninput=()=>{P.limit=+$("lim").value;save();draw()};
+$("gen").onclick=()=>{P.blocks=parse($("tx").value);P.blocks.forEach(b=>b.lines.forEach(l=>{if(ci(l.who)<0)P.characters.push({name:l.who,role:"",pitch:PIT[P.characters.length%PIT.length]})}));all()};
+$("fixv").onclick=()=>{if(!voices.length){alert("Nenhuma voz em português disponível.");return}P.characters.forEach((c,i)=>{if(!c.voice)c.voice=voices[i%voices.length].name});chars();save()};
+$("addc").onclick=()=>{const n=P.characters.length;P.characters.push({name:"Personagem "+(n+1),role:"",pitch:PIT[n%PIT.length]});all()};
+$("chs").oninput=e=>{const t=e.target,k=t.dataset.k;if(!k)return;const c=P.characters[+t.dataset.i];if(k=="name"){const o=c.name;c.name=t.value;P.blocks.forEach(b=>b.lines.forEach(l=>{if(l.who==o)l.who=t.value}))}else if(k=="pitch")c.pitch=+t.value;else if(k=="voice"){if(t.value)c.voice=t.value;else delete c.voice}else c.role=t.value;$("tx").value=toText();stage();save()};
+$("chs").onclick=e=>{const d=e.target.dataset.del;if(d===undefined)return;const n=P.characters[+d].name;P.characters.splice(+d,1);P.blocks.forEach(b=>b.lines=b.lines.filter(l=>l.who!=n));$("tx").value=toText();all()};
+$("exp").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(P,null,1)],{type:"application/json"}));a.download=(P.title||"roteiro").replace(/[^\w\-]+/g,"_")+".json";a.click()};
+$("imp").onclick=()=>$("fi").click();
+$("fi").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const j=JSON.parse(r.result);if(!Array.isArray(j.characters)||!Array.isArray(j.blocks))throw 0;P=j;P.characters.forEach((c,i)=>{c.pitch=c.pitch||PIT[i%PIT.length]});P.blocks.forEach(b=>b.lines.forEach(l=>{if(ci(l.who)<0)P.characters.push({name:l.who,role:"",pitch:1})}));$("ti").value=P.title||"";$("lim").value=P.limit??20;$("tx").value=toText();all()}catch(x){alert("JSON inválido: precisa ter characters e blocks.")}};r.readAsText(f);e.target.value=""};
+$("ti").value=P.title;$("lim").value=P.limit??20;$("tx").value=toText();all();
+</script></body></html>

@@ -1,0 +1,394 @@
+{
+ "title": "Papo de Dados: Economia da inferência (versão 18 min)",
+ "limit": 20,
+ "characters": [
+  {
+   "name": "Lucas",
+   "role": "Apresentador 1",
+   "pitch": 1.0
+  },
+  {
+   "name": "Timóteo",
+   "role": "Apresentador 2",
+   "pitch": 1.15
+  },
+  {
+   "name": "João Pedro",
+   "role": "Economista",
+   "pitch": 0.85
+  },
+  {
+   "name": "Ivan",
+   "role": "Engenheiro ambiental",
+   "pitch": 0.95
+  },
+  {
+   "name": "Victor F.",
+   "role": "Pesquisador",
+   "pitch": 1.2
+  },
+  {
+   "name": "Leme",
+   "role": "Engenheiro de MLOps/FinOps",
+   "pitch": 0.75
+  }
+ ],
+ "blocks": [
+  {
+   "title": "Apresentação e Contexto Econômico",
+   "optional": false,
+   "lines": [
+    {
+     "who": "Lucas",
+     "text": "Bom dia, e sejam bem-vindos ao Papo de Dados, o podcast que conversa sobre dados, tecnologia e carreira sem complicar! Eu sou Lucas Marques, estudante de Ciência de Dados da Fatec Baixada Santista."
+    },
+    {
+     "who": "Timóteo",
+     "text": "E eu sou Timóteo Pereira, da mesma turma. Nosso episódio é “Economia da inferência: quem paga a conta da IA”."
+    },
+    {
+     "who": "Lucas",
+     "text": "Uma palavra que todo mundo usa sem pensar: nuvem. Ela parece leve, mas é um prédio cheio de servidores, ligado na tomada e refrigerado com ar ou com água."
+    },
+    {
+     "who": "Timóteo",
+     "text": "E aí entra o termo-chave. Treinar um modelo de IA é como construir uma fábrica: custa muito, mas acontece poucas vezes. Já a inferência é cada resposta que o modelo dá a uma pergunta nossa. Cada uma custa pouco, mas elas somam bilhões."
+    },
+    {
+     "who": "Lucas",
+     "text": "Segundo a Agência Internacional de Energia, no relatório Energy and AI, de abril de 2025, os data centers consumiram cerca de 415 terawatts-hora em 2024, perto de 1,5% da eletricidade do planeta. A projeção é chegar a 945 em 2030. Terawatt-hora é a unidade que mede países inteiros."
+    },
+    {
+     "who": "Timóteo",
+     "text": "As projeções continuam sendo revistas. Em junho de 2026, a Gartner estimou 565 terawatts-hora para este ano, alta de 26% sobre 2025. Mas atenção: são projeções, e não certezas."
+    },
+    {
+     "who": "Lucas",
+     "text": "Então, quem paga a energia, a água, os chips e o dinheiro de cada resposta? E, numa disciplina de linguagens, quanto isso depende do idioma em que a gente pergunta? Vamos conhecer os quatro convidados!"
+    }
+   ]
+  },
+  {
+   "title": "Perfil dos Convidados",
+   "optional": false,
+   "lines": [
+    {
+     "who": "Lucas",
+     "text": "O primeiro é João Pedro Dias de Andrade Silva, economista, mestre em Economia da Energia, com dissertação sobre preço e regulação e mais de dez anos em consultoria de infraestrutura. Senhor Dias, obrigado por aceitar o convite!"
+    },
+    {
+     "who": "João Pedro",
+     "text": "Eu que agradeço. Meu recado é simples: preço e escassez explicam quase tudo. Quem controla os chips e o capital controla a conta."
+    },
+    {
+     "who": "Timóteo",
+     "text": "Também conosco, Ivan Guimarães dos Santos da Silva, engenheiro ambiental, pós-graduado em recursos hídricos, com atuação em licenciamento de obras de energia e hoje assessor de projetos de data centers. Seja bem-vindo!"
+    },
+    {
+     "who": "Ivan",
+     "text": "Obrigado, pessoal. Eu trago a conta que não aparece no boleto: a água, a energia da rede e o território."
+    },
+    {
+     "who": "Lucas",
+     "text": "Victor Ferreira Santos é cientista da computação, doutor em Engenharia da Computação, com tese sobre eficiência energética, e pesquisa a Green AI, a IA verde, medindo a energia e o carbono de cada modelo. Obrigado por vir, senhor Ferreira!"
+    },
+    {
+     "who": "Victor F.",
+     "text": "Obrigado pelo convite. Eu entro com a medida: sem medir, a discussão vira opinião."
+    },
+    {
+     "who": "Timóteo",
+     "text": "E, por fim, Victor Gabriel Leme da Silva, engenheiro de MLOps e FinOps, especialista em Engenharia de Dados e cofundador de uma empresa de otimização de custo de nuvem. MLOps coloca modelos em produção, e FinOps cuida do custo da nuvem. Bem-vindo, senhor Leme!"
+    },
+    {
+     "who": "Leme",
+     "text": "Valeu! Eu sou quem recebe a fatura: reduzo o custo de rodar IA sem piorar o produto."
+    }
+   ]
+  },
+  {
+   "title": "O “Gancho” Universitário",
+   "optional": false,
+   "lines": [
+    {
+     "who": "Lucas",
+     "text": "Uma pergunta que é nossa também, como estudantes. Um estudo de Stanford, de agosto de 2025, de Erik Brynjolfsson e colegas, encontrou queda relativa de 13% no emprego de jovens de 22 a 25 anos nas ocupações mais expostas à IA. O que mudou, nesses últimos dois ou três anos, para quem está entrando no mercado? E o que isso tem a ver com a conta da IA?"
+    },
+    {
+     "who": "João Pedro",
+     "text": "Tem tudo a ver. Quando um insumo fica barato, as empresas o usam mais, e o trabalho humano se desloca para decidir, verificar e se responsabilizar pelo resultado. Se a empresa compra tarefas por token, o pedacinho de texto que a IA cobra, ela repensa o que paga pelas tarefas iniciais."
+    },
+    {
+     "who": "Leme",
+     "text": "E a empresa precisa de gente que meça se o gasto vale o que custa. Na minha, é difícil achar alguém que abra a fatura de IA e explique por que ela subiu."
+    }
+   ]
+  },
+  {
+   "title": "Bloco A: Quem paga? Preço, escala e escassez",
+   "optional": false,
+   "lines": [
+    {
+     "who": "Lucas",
+     "text": "Senhor Dias, o AI Index de 2025, de Stanford, mostra que o custo de obter desempenho de nível GPT-3.5 caiu 280 vezes entre 2022 e 2024. Se ficou tão barato, por que ainda se reclama da fatura?"
+    },
+    {
+     "who": "João Pedro",
+     "text": "Pelo paradoxo de Jevons: quando algo fica mais barato, as pessoas usam muito mais, e o gasto total pode até subir. O diretor de tecnologia da Uber, Praveen Neppalli Naga, contou ao The Information, em abril, que a empresa já tinha esgotado o orçamento de 2026 para ferramentas de IA de programação."
+    },
+    {
+     "who": "Leme",
+     "text": "Confirmo, vendo de dentro. O preço por token caiu, mas a conta subiu, porque o volume explodiu. Por isso a gente mede custo por requisição: não existe “quanto custa o modelo”, e sim “quanto custa cada tarefa concluída”."
+    },
+    {
+     "who": "Timóteo",
+     "text": "E a oferta? O que são as GPUs?"
+    },
+    {
+     "who": "João Pedro",
+     "text": "É o chip que faz os cálculos da IA. Segundo analistas do setor, a Nvidia detém a maior fatia do mercado de chips para treinar modelos, e isso dá poder de preço."
+    },
+    {
+     "who": "Timóteo",
+     "text": "Senhor Leme, na prática, como a conta não explode?"
+    },
+    {
+     "who": "Leme",
+     "text": "Três coisas. Roteamento por tarefa: perguntas simples vão para modelos menores, e o modelo de fronteira, o mais caro, fica para as difíceis. Cache, que é guardar respostas repetidas para não pagar duas vezes. E quantização, que reduz a precisão dos números do modelo para ele rodar mais barato."
+    }
+   ]
+  },
+  {
+   "title": "Bloco B: A conta física, energia e água",
+   "optional": false,
+   "lines": [
+    {
+     "who": "Timóteo",
+     "text": "Senhor Ferreira, como a ciência mede a conta física, de energia e de água?"
+    },
+    {
+     "who": "Victor F.",
+     "text": "Com muita incerteza, porque as empresas não separam a IA do resto do consumo. Alex de Vries-Gao, na revista Patterns, em dezembro de 2025, estimou que a IA emitiu entre 32,6 e 79,7 milhões de toneladas de CO2 em 2025 e usou entre 312 e 765 bilhões de litros de água. A faixa é larga porque os dados não são divulgados."
+    },
+    {
+     "who": "Ivan",
+     "text": "E a água derruba um mito. Um estudo de Harvard, de Gianluca Guidi e Francesca Dominici, de julho de 2026, calculou que 472 grandes data centers dos Estados Unidos usam cerca de 300 bilhões de litros de água por ano, e que cerca de três quartos disso estão ligados à geração de eletricidade, e não à refrigeração do prédio."
+    },
+    {
+     "who": "Timóteo",
+     "text": "Ou seja, a água não é gasta onde fica o prédio?"
+    },
+    {
+     "who": "Ivan",
+     "text": "Muitas vezes, não: é gasta na usina que gera a energia. Por isso o lugar importa tanto. No Brasil, conectar um data center passa pelo Operador Nacional do Sistema Elétrico, o ONS, e pela agência reguladora, a Aneel."
+    },
+    {
+     "who": "João Pedro",
+     "text": "O argumento a favor da escala é que grandes data centers costumam ser mais eficientes, o que se mede pelo PUE, sigla em inglês para Power Usage Effectiveness: a energia total do prédio dividida pela que chega aos servidores. Quanto mais perto de 1, melhor."
+    },
+    {
+     "who": "Victor F.",
+     "text": "O PUE nasceu em 2007, no Green Grid, um consórcio da indústria, e virou norma ISO em 2016. Mas, respondendo ao senhor Dias, eficiência por unidade não reduz o total se o uso cresce mais rápido. É o Jevons de novo."
+    }
+   ]
+  },
+  {
+   "title": "Bloco C: Linguagem, tokens e território",
+   "optional": false,
+   "lines": [
+    {
+     "who": "Timóteo",
+     "text": "Estamos numa disciplina de linguagens, então: o que é, afinal, um token?"
+    },
+    {
+     "who": "Victor F.",
+     "text": "Um pedaço de texto. O modelo não lê letra por letra nem palavra por palavra: ele divide o texto em pedaços e transforma cada um em número. E a cobrança é por token."
+    },
+    {
+     "who": "Timóteo",
+     "text": "Então o idioma entra na conta?"
+    },
+    {
+     "who": "Victor F.",
+     "text": "Entra. Um estudo de Aleksandar Petrov e colegas, na conferência NeurIPS, em 2023, mostrou que o mesmo texto, em idiomas diferentes, pode gerar até 15 vezes mais tokens. Isso significa pagar mais, esperar mais e ter menos espaço de contexto."
+    },
+    {
+     "who": "Leme",
+     "text": "Para uma startup brasileira, isso entra na planilha: meça o seu caso antes de assinar."
+    },
+    {
+     "who": "Lucas",
+     "text": "Dizem que ser educado com a IA custa dinheiro. Procede?"
+    },
+    {
+     "who": "Leme",
+     "text": "Na lógica, sim, com um aviso. Em abril de 2025, Sam Altman, da OpenAI, disse a um usuário no X, meio de brincadeira, que o “por favor” e o “obrigado” custam dezenas de milhões de dólares em eletricidade, “bem gastos”. Não é medição oficial, mas cada palavra a mais é um token a mais."
+    },
+    {
+     "who": "Timóteo",
+     "text": "Senhor Guimarães, muitos data centers estão indo para países em desenvolvimento, onde o idioma local é menos bem atendido. Isso tem a ver com idioma?"
+    },
+    {
+     "who": "Ivan",
+     "text": "Diretamente, não. O lugar é decidido por energia, terreno, clima, impostos e latência, que é o tempo de resposta. Um prompt em português pode ser processado na Virgínia. O ponto verdadeiro é que quem hospeda a infraestrutura arca com água e energia, e nem sempre é quem tem o seu idioma bem atendido."
+    },
+    {
+     "who": "Ivan",
+     "text": "É o que o Redata tenta organizar no Brasil: aprovado pelo Senado em 1º de setembro de 2026 e sancionado em 15 de setembro. A lei reduz tributos de equipamentos, mas exige que as empresas destinem ao menos 10% da capacidade ao mercado nacional e reportem o WUE, o índice de quanta água se usa por energia consumida."
+    }
+   ]
+  },
+  {
+   "title": "Bloco D: Raciocinar vale o custo? E cross-fire final",
+   "optional": false,
+   "lines": [
+    {
+     "who": "Lucas",
+     "text": "Senhor Ferreira, os modelos que “pensam” antes de responder gastam muito mais tokens. Dá para saber quando compensa?"
+    },
+    {
+     "who": "Victor F.",
+     "text": "Existe o Token Economy Score, que mede o ganho de acerto em relação aos tokens extras. Vem do artigo The Reasoning Tax, de 2026, de pesquisadores da Lenovo. Em raciocínio em sequência, como matemática e programação, compensa. Em lembrar conhecimento, o ganho é baixo."
+    },
+    {
+     "who": "Leme",
+     "text": "Vira regra no meu trabalho: raciocínio só quando a tarefa pede. Prazo de entrega não precisa de um modelo que pense por dez segundos, mas a análise de um contrato talvez precise. Primeiro testa, depois decide."
+    },
+    {
+     "who": "Timóteo",
+     "text": "Cross-fire rápido! Senhor Ferreira defende eficiência, e Senhor Dias defende escala. Uma resposta curta de cada."
+    },
+    {
+     "who": "João Pedro",
+     "text": "Eficiência sem escala não paga a pesquisa que gera a próxima eficiência. E as projeções da Agência Internacional de Energia e da Gartner divergem porque partem de premissas diferentes: eu sempre pergunto qual é a premissa."
+    },
+    {
+     "who": "Victor F.",
+     "text": "Concordo com a ressalva das premissas, mas escala sem eficiência vira conta de luz. A discussão é sobre proporção, e não sobre escolher um lado."
+    }
+   ]
+  },
+  {
+   "title": "Habilidades do Futuro",
+   "optional": false,
+   "lines": [
+    {
+     "who": "Timóteo",
+     "text": "Que habilidades as empresas procuram hoje? Cada um em poucas palavras."
+    },
+    {
+     "who": "Leme",
+     "text": "Medir custo por requisição e ler uma fatura de nuvem. E escrever com economia: prompt claro e curto custa menos e costuma funcionar melhor."
+    },
+    {
+     "who": "João Pedro",
+     "text": "Transformar dado em decisão e questionar as premissas de uma projeção. Quem só repete o número do relatório não agrega nada."
+    },
+    {
+     "who": "Victor F.",
+     "text": "Método científico: replicar resultados e desconfiar de número sem fonte. E saber explicar a margem de erro para quem não é da área."
+    },
+    {
+     "who": "Ivan",
+     "text": "Medir impacto, como PUE e WUE, e entender a regulação do território. Dado sem contexto legal e ambiental não vira decisão."
+    }
+   ]
+  },
+  {
+   "title": "Erros Comuns de Iniciantes",
+   "optional": false,
+   "lines": [
+    {
+     "who": "Lucas",
+     "text": "Qual é o erro mais comum de quem está começando, entre a teoria e a prática?"
+    },
+    {
+     "who": "Leme",
+     "text": "Achar que o modelo mais caro é o melhor, sem medir o que ele agrega. Na faculdade a gente compara acurácia, no mercado compara acurácia por real gasto."
+    },
+    {
+     "who": "Victor F.",
+     "text": "Na mesma linha: tratar acurácia como única métrica e esquecer o custo de chegar lá, em energia e em dinheiro."
+    },
+    {
+     "who": "Ivan",
+     "text": "Ignorar o território e a lei. Na prática, tem licença, tem vizinho e tem rede elétrica."
+    },
+    {
+     "who": "João Pedro",
+     "text": "Tomar projeção como certeza. Projeção é cenário, e não destino."
+    }
+   ]
+  },
+  {
+   "title": "Conselho de Ouro",
+   "optional": false,
+   "lines": [
+    {
+     "who": "Timóteo",
+     "text": "Agora, um conselho de ouro de cada um, para quem quer se destacar em processos seletivos ou criar uma startup."
+    },
+    {
+     "who": "João Pedro",
+     "text": "Não compita no preço do token, porque quem tem escala ganha esse jogo. Procure um nicho em que o seu conhecimento do problema valha mais que o modelo."
+    },
+    {
+     "who": "Ivan",
+     "text": "Aprenda a ler relatórios, como o da Agência Internacional de Energia, e a lei, como o Redata. Quem entende a regra antes sai na frente."
+    },
+    {
+     "who": "Victor F.",
+     "text": "Replique um artigo sobre custo ou eficiência e publique no GitHub, explicando onde o seu resultado diferiu. Isso mostra método."
+    },
+    {
+     "who": "Leme",
+     "text": "Monte um projeto de portfólio que reduza um custo e mostre o antes e o depois, com número. É o que eu gostaria de ver em um currículo."
+    }
+   ]
+  },
+  {
+   "title": "Síntese dos Apresentadores",
+   "optional": false,
+   "lines": [
+    {
+     "who": "Lucas",
+     "text": "Resumindo, a conta da IA tem quatro partes. O dinheiro, em que o token cai, mas o uso explode. Os chips, concentrados em poucas empresas. A energia e a água, gastas longe de quem usa. E a linguagem, que muda os tokens."
+    },
+    {
+     "who": "Timóteo",
+     "text": "O fio que liga tudo é que cada resposta de uma IA é um evento material, com um custo que alguém paga. Quem trabalha com dados precisa saber medir esse custo, questionar a fonte e dizer, em voz alta, quando o número não fecha."
+    }
+   ]
+  },
+  {
+   "title": "Call to Action",
+   "optional": false,
+   "lines": [
+    {
+     "who": "Lucas",
+     "text": "Chegamos ao fim, mas a conversa continua. Cada convidado diz onde encontrá-lo e uma leitura ou curso que recomenda."
+    },
+    {
+     "who": "João Pedro",
+     "text": "Estou no YouTube, no canal JP Dias Economia. Recomendo o relatório Energy and AI, da Agência Internacional de Energia, que é aberto."
+    },
+    {
+     "who": "Ivan",
+     "text": "Estou no Instagram, em territorio.ivan, falando de energia e meio ambiente. Minha dica é ler o texto do Redata."
+    },
+    {
+     "who": "Victor F.",
+     "text": "Meu código e minhas replicações ficam no GitHub, em victorferreira-lab, Victor Ferreira traço lab. Recomendo o artigo de Petrov e colegas, que liga linguagem e custo."
+    },
+    {
+     "who": "Leme",
+     "text": "Estou no LinkedIn, em victorleme-finops, Victor Leme traço finops. Recomendo dois cursos gratuitos: Introduction to FinOps e Green Software for Practitioners."
+    },
+    {
+     "who": "Timóteo",
+     "text": "E, do próprio Papo de Dados, o AI Index Report, de Stanford. Convidados, muito obrigado! E obrigado a vocês! Até o próximo episódio!"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+
+# Local work files
+*.docx
+~$*
+output/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
